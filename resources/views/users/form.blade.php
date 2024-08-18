@@ -1,20 +1,20 @@
-<x-layout title=" Create Users">
+<x-layout title="{{$page_meta['title']}}">
     <x-slot name="heading">
-        Create Users
+        {{$page_meta['title']}}
     </x-slot>
-    <form action="/users" method="post" class="space-y-6">
+    <form action="{{$page_meta['url']}}" method="post" class="space-y-6">
         @csrf
-        @method('POST')
+        @method($page_meta['method'])
         <div class="">
             <label for="name">Name</label>
-            <input class="border py-2 px-4 rounded block md-1" type="text" name="name" id="name">
+            <input class="border py-2 px-4 rounded block md-1" type="text" name="name" id="name" value="{{old('name', $user->name)}}">
             @error('name')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
         <div class="">
             <label for="email">Email</label>
-            <input class="border py-2 px-4 rounded block md-1" type="email" name="email" id="email">
+            <input class="border py-2 px-4 rounded block md-1" type="email" name="email" id="email" value="{{old('email', $user->email)}}">
             @error('email')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
@@ -27,7 +27,7 @@
             @enderror
         </div>
         <x-button>
-            Save
+            {{$page_meta['submit_text']}}
         </x-button>
     </form>
 </x-layout>
