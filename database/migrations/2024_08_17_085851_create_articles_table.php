@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('teaser');
+            $table->text('teaser');  
             $table->text('body');
             $table->string('meta_title');
             $table->string('description');
