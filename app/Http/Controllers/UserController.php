@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::query()->oldest()->get();
+        $users = User::query()->latest()->get();
 
         return view('users.index', compact('users'));
     }
@@ -18,5 +18,11 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create');
+    }
+    public function store(Request $request)
+    {
+        User::create($request->only('name', 'email', 'password'));
+
+        return redirect('/users');
     }
 }

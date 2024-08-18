@@ -22,7 +22,7 @@
                     <x-table.th>#</x-table.th>
                     <x-table.th>Name</x-table.th>
                     <x-table.th>Email</x-table.th>
-                    <x-table.th>Created_at</x-table.th>
+                    <x-table.th>Created At</x-table.th>
                 </tr>
             </x-table.thead>
             <x-table.tbody>
