@@ -8,4 +8,9 @@
     <div>
         Registered at {{ $user->created_at->diffForHumans() }}
     </div>
+    <form action="/users/{{$user->id}}" method="post" class="mt-6">
+        @method('DELETE')
+        @csrf
+        <x-button>Delete</x-button>
+    </form>
 </x-layout>

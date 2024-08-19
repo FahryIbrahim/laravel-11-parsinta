@@ -54,7 +54,12 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect("/users");
+        return redirect('/users');
     }
+    public function destroy(User $user)
+    {
+        $user->delete();
 
+        return redirect('/users');
+    }
 }
