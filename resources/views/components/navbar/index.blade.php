@@ -13,7 +13,18 @@
                             <x-navbar.link href="/about">About</x-navbar.link>
                             <x-navbar.link href="/contact">Contact</x-navbar.link>
                             <x-navbar.link href="/gallery">Gallery</x-navbar.link>
-                            <x-navbar.link href="/users">Users</x-navbar.link>
+                            @auth
+                                <x-navbar.link href="{{ route('users.index') }}">Users</x-navbar.link>
+                                <x-navbar.link href="#">{{ Auth()->user()->name }}</x-navbar.link>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <x-button type="submit">Log out</x-button>
+                                </form>
+                            @endauth
+                            @guest
+                                <x-navbar.link href="/login">Login</x-navbar.link>
+                            @endguest
+
                     </div>
                 </div>
             </div>
@@ -49,7 +60,21 @@
             <x-navbar.dropdown-item href="/about">About</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="/contact">Contact</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="/gallery">Gallery</x-navbar.dropdown-item>
-            <x-navbar.dropdown-item href="/users">Users</x-navbar.dropdown-item>
+            @auth
+                <x-navbar.dropdown-item href="{{ route('users.index') }}">Users</x-navbar.dropdown-item>
+                <x-navbar.dropdown-item href="#">{{ auth()->user()->name }}</x-navbar.dropdown-item>
+                <x-navbar.dropdown-item href="#">
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <x-button type="submit">
+                            Log out
+                        </x-button>
+                    </form>
+                </x-navbar.dropdown-item>
+            @endauth
+            @guest
+                <x-navbar.dropdown-item href="/login">Login</x-navbar.dropdown-item>
+            @endguest
         </div>
     </div>
 </nav>
